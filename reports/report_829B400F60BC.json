@@ -1,0 +1,92 @@
+{
+  "transaction_id": "TXN-829B400F60BC",
+  "investigation_timestamp": "2026-04-20T07:55:21.325442+00:00",
+  "fraud_pattern": "STRUCTURING",
+  "fraud_narrative": "Transaction of 9,800.00 EUR from Ahmed Al-Rashid (IQ \u2192 DE) assessed as LOW risk (score 33/100). Pattern: STRUCTURING. 4 compliance issue(s) detected (highest: CRITICAL): Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000; High-risk third country involved (sender: IQ) \u2014 Enhanced Due Diligence required. BaFin SAR filing mandatory within 24h.",
+  "graph_analysis": "Single-hop transfer IQ \u2192 DE",
+  "behavior_analysis": "Velocity flag: True, prior 24h txns: 4, prior 24h amount: 38,400 EUR",
+  "compliance_analysis": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000; High-risk third country involved (sender: IQ) \u2014 Enhanced Due Diligence required; Amount (\u20ac9,800) suspiciously close to \u20ac10,000 reporting threshold \u2014 possible structuring; Velocity anomaly: 4 transactions, \u20ac38,400 in past 24h",
+  "observability_insight": "IP: 31.40.183.200, device: fp_iqq33333",
+  "top_risk_factors": [
+    "High-risk country involved: IQ \u2192 DE",
+    "Possible structuring \u2014 amount just below reporting threshold",
+    "Transaction velocity: 4 txns / \u20ac38,400 in 24h"
+  ],
+  "investigator_summary": "Transaction of 9,800.00 EUR from Ahmed Al-Rashid (IQ \u2192 DE) assessed as LOW risk (score 33/100). Pattern: STRUCTURING. 4 compliance issue(s) detected (highest: CRITICAL): Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000; High-risk third country involved (sender: IQ) \u2014 Enhanced Due Diligence required. BaFin SAR filing mandatory within 24h.",
+  "alert_recommendation": "NO_ALERT",
+  "email_notification": null,
+  "evidence_mapping": [
+    {
+      "type": "watchlist",
+      "hits": 0
+    },
+    {
+      "type": "compliance",
+      "issues": 4
+    }
+  ],
+  "confidence": 43,
+  "regulatory_obligations": [
+    "BaFin \u00a711 GwG \u2014 Large Transaction Report required"
+  ],
+  "bafin_sar_required": true,
+  "_tool_results": {
+    "watchlist_screening": {
+      "screening_timestamp": "2026-04-20T07:55:21.325315+00:00",
+      "customer_name_screened": "Ahmed Al-Rashid",
+      "beneficiary_name_screened": "Global Trade Solutions GmbH",
+      "watchlist_hits": [],
+      "total_hits": 0,
+      "highest_risk": "NONE",
+      "screening_status": "CLEAR"
+    },
+    "compliance_check": {
+      "compliance_timestamp": "2026-04-20T07:55:21.325372+00:00",
+      "eur_equivalent": 9800.0,
+      "sender_country": "IQ",
+      "beneficiary_country": "DE",
+      "sender_in_eu": false,
+      "beneficiary_in_eu": true,
+      "sender_high_risk": true,
+      "beneficiary_high_risk": false,
+      "compliance_issues": [
+        {
+          "rule": "EU Regulation 2015/847",
+          "description": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000",
+          "severity": "MEDIUM"
+        },
+        {
+          "rule": "EU 5AMLD Art. 18 / BaFin AML",
+          "description": "High-risk third country involved (sender: IQ) \u2014 Enhanced Due Diligence required",
+          "severity": "HIGH"
+        },
+        {
+          "rule": "BaFin \u00a7261 StGB / FinCEN Structuring",
+          "description": "Amount (\u20ac9,800) suspiciously close to \u20ac10,000 reporting threshold \u2014 possible structuring",
+          "severity": "CRITICAL"
+        },
+        {
+          "rule": "BaFin AT 6.3 MaRisk / EU 4AMLD Art. 8",
+          "description": "Velocity anomaly: 4 transactions, \u20ac38,400 in past 24h",
+          "severity": "HIGH"
+        }
+      ],
+      "total_issues": 4,
+      "highest_severity": "CRITICAL",
+      "mandatory_sar_required": true
+    },
+    "risk_analysis": {
+      "risk_score": 33,
+      "risk_level": "LOW",
+      "risk_factors": [
+        "High-risk country involved: IQ \u2192 DE",
+        "Possible structuring \u2014 amount just below reporting threshold",
+        "Transaction velocity: 4 txns / \u20ac38,400 in 24h"
+      ],
+      "alert_recommended": false,
+      "sar_required": true
+    },
+    "alert_dispatched": false,
+    "alert_details": null
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "transaction_id": "TXN-68495C585B54",
+  "investigation_timestamp": "2026-04-20T07:55:21.318205+00:00",
+  "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+  "fraud_narrative": "Transaction of 250,000.00 EUR from Daniel Kinahan (AE \u2192 MT) assessed as CRITICAL risk (score 93/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Daniel Kinahan matched as ORGANIZED_CRIME (100.0% confidence). Sanctions: OFAC_SDN, INTERPOL_RED_NOTICE. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+  "graph_analysis": "Single-hop transfer AE \u2192 MT",
+  "behavior_analysis": "Velocity flag: True, prior 24h txns: 5, prior 24h amount: 750,000 EUR",
+  "compliance_analysis": "Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000; Velocity anomaly: 5 transactions, \u20ac750,000 in past 24h",
+  "observability_insight": "IP: 212.117.65.23, device: fp_uae88888",
+  "top_risk_factors": [
+    "CRITICAL watchlist match \u2014 Daniel Kinahan",
+    "Large transaction: \u20ac250,000",
+    "Multiple compliance violations detected"
+  ],
+  "investigator_summary": "Transaction of 250,000.00 EUR from Daniel Kinahan (AE \u2192 MT) assessed as CRITICAL risk (score 93/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Daniel Kinahan matched as ORGANIZED_CRIME (100.0% confidence). Sanctions: OFAC_SDN, INTERPOL_RED_NOTICE. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+  "alert_recommendation": "TRIGGER_ALERT",
+  "email_notification": {
+    "alert_id": "ALERT-20260420075521-TXN-6849",
+    "timestamp": "2026-04-20T07:55:21Z",
+    "priority": "CRITICAL",
+    "subject": "\ud83d\udea8 [CRITICAL] Fraud Alert \u2014 SANCTIONED_ENTITY_TRANSFER | Daniel Kinahan | 250,000 EUR",
+    "transaction_id": "TXN-68495C585B54",
+    "customer_name": "Daniel Kinahan",
+    "amount": 250000.0,
+    "currency": "EUR",
+    "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+    "risk_score": 93,
+    "top_risk_factors": [
+      "CRITICAL watchlist match \u2014 Daniel Kinahan",
+      "Large transaction: \u20ac250,000",
+      "Multiple compliance violations detected"
+    ],
+    "alert_reason": "Transaction of 250,000.00 EUR from Daniel Kinahan (AE \u2192 MT) assessed as CRITICAL risk (score 93/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Daniel Kinahan matched as ORGANIZED_CRIME (100.0% confidence). Sanctions: OFAC_SDN, INTERPOL_RED_NOTICE. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+    "watchlist_matches": [
+      {
+        "query_name": "Daniel Kinahan",
+        "matched_name": "Daniel Kinahan",
+        "match_score": 100.0,
+        "match_type": "EXACT",
+        "risk_level": "CRITICAL",
+        "category": "ORGANIZED_CRIME",
+        "sanctions": [
+          "OFAC_SDN",
+          "INTERPOL_RED_NOTICE"
+        ],
+        "known_for": "Kinahan Cartel, heroin/cocaine trafficking, boxing corruption",
+        "associated_entities": [
+          "Kinahan OCG",
+          "MTK Global"
+        ],
+        "nationality": "Irish",
+        "watchlist_id": "WL-042"
+      }
+    ],
+    "recommended_action": "IMMEDIATE: Freeze transaction, file SAR with BaFin FIU, notify compliance team",
+    "recipients": [
+      "ceo@globalbank.com",
+      "cfo@globalbank.com",
+      "cco@globalbank.com",
+      "cro@globalbank.com",
+      "aml-team@globalbank.com",
+      "fraud-soc@globalbank.com"
+    ],
+    "regulatory_obligations": [
+      "BaFin \u00a7261 StGB \u2014 File Suspicious Activity Report (SAR) within 24h",
+      "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+      "EU Sanctions Regulation \u2014 Freeze assets, report to competent authority",
+      "GDPR Art. 6(1)(c) \u2014 Processing lawful under legal obligation",
+      "BaFin \u00a711 GwG \u2014 Large Cash Transaction Report (\u2265\u20ac10,000)",
+      "EU Wire Transfer Regulation 2015/847 \u2014 Full originator/beneficiary info required",
+      "BaFin AT 8.2 MaRisk \u2014 Escalate to Risk Management Committee",
+      "EU 6AMLD \u2014 Enhanced Due Diligence, document investigation",
+      "CRITICAL: Consider immediate account freeze pending investigation",
+      "Notify BaFin Supervisory Officer within 48h (\u00a743 KWG)"
+    ],
+    "dispatch_status": "SENT"
+  },
+  "evidence_mapping": [
+    {
+      "type": "watchlist",
+      "hits": 1
+    },
+    {
+      "type": "compliance",
+      "issues": 3
+    }
+  ],
+  "confidence": 100,
+  "regulatory_obligations": [
+    "BaFin \u00a7261 StGB \u2014 File SAR with FIU within 24h",
+    "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+    "BaFin \u00a711 GwG \u2014 Large Transaction Report required"
+  ],
+  "bafin_sar_required": true,
+  "_tool_results": {
+    "watchlist_screening": {
+      "screening_timestamp": "2026-04-20T07:55:21.317425+00:00",
+      "customer_name_screened": "Daniel Kinahan",
+      "beneficiary_name_screened": "Elite Sports Management FZE",
+      "watchlist_hits": [
+        {
+          "query_name": "Daniel Kinahan",
+          "matched_name": "Daniel Kinahan",
+          "match_score": 100.0,
+          "match_type": "EXACT",
+          "risk_level": "CRITICAL",
+          "category": "ORGANIZED_CRIME",
+          "sanctions": [
+            "OFAC_SDN",
+            "INTERPOL_RED_NOTICE"
+          ],
+          "known_for": "Kinahan Cartel, heroin/cocaine trafficking, boxing corruption",
+          "associated_entities": [
+            "Kinahan OCG",
+            "MTK Global"
+          ],
+          "nationality": "Irish",
+          "watchlist_id": "WL-042"
+        }
+      ],
+      "total_hits": 1,
+      "highest_risk": "CRITICAL",
+      "screening_status": "HIT"
+    },
+    "compliance_check": {
+      "compliance_timestamp": "2026-04-20T07:55:21.317508+00:00",
+      "eur_equivalent": 250000.0,
+      "sender_country": "AE",
+      "beneficiary_country": "MT",
+      "sender_in_eu": false,
+      "beneficiary_in_eu": true,
+      "sender_high_risk": false,
+      "beneficiary_high_risk": false,
+      "compliance_issues": [
+        {
+          "rule": "BaFin \u00a711 GwG",
+          "description": "Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required",
+          "severity": "HIGH"
+        },
+        {
+          "rule": "EU Regulation 2015/847",
+          "description": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000",
+          "severity": "MEDIUM"
+        },
+        {
+          "rule": "BaFin AT 6.3 MaRisk / EU 4AMLD Art. 8",
+          "description": "Velocity anomaly: 5 transactions, \u20ac750,000 in past 24h",
+          "severity": "HIGH"
+        }
+      ],
+      "total_issues": 3,
+      "highest_severity": "HIGH",
+      "mandatory_sar_required": true
+    },
+    "risk_analysis": {
+      "risk_score": 93,
+      "risk_level": "CRITICAL",
+      "risk_factors": [
+        "CRITICAL watchlist match \u2014 Daniel Kinahan",
+        "Large transaction: \u20ac250,000",
+        "Multiple compliance violations detected",
+        "Transaction velocity: 5 txns / \u20ac750,000 in 24h"
+      ],
+      "alert_recommended": true,
+      "sar_required": true
+    },
+    "alert_dispatched": true,
+    "alert_details": {
+      "alert_id": "ALERT-20260420075521-TXN-6849",
+      "timestamp": "2026-04-20T07:55:21Z",
+      "priority": "CRITICAL",
+      "subject": "\ud83d\udea8 [CRITICAL] Fraud Alert \u2014 SANCTIONED_ENTITY_TRANSFER | Daniel Kinahan | 250,000 EUR",
+      "transaction_id": "TXN-68495C585B54",
+      "customer_name": "Daniel Kinahan",
+      "amount": 250000.0,
+      "currency": "EUR",
+      "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+      "risk_score": 93,
+      "top_risk_factors": [
+        "CRITICAL watchlist match \u2014 Daniel Kinahan",
+        "Large transaction: \u20ac250,000",
+        "Multiple compliance violations detected"
+      ],
+      "alert_reason": "Transaction of 250,000.00 EUR from Daniel Kinahan (AE \u2192 MT) assessed as CRITICAL risk (score 93/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Daniel Kinahan matched as ORGANIZED_CRIME (100.0% confidence). Sanctions: OFAC_SDN, INTERPOL_RED_NOTICE. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+      "watchlist_matches": [
+        {
+          "query_name": "Daniel Kinahan",
+          "matched_name": "Daniel Kinahan",
+          "match_score": 100.0,
+          "match_type": "EXACT",
+          "risk_level": "CRITICAL",
+          "category": "ORGANIZED_CRIME",
+          "sanctions": [
+            "OFAC_SDN",
+            "INTERPOL_RED_NOTICE"
+          ],
+          "known_for": "Kinahan Cartel, heroin/cocaine trafficking, boxing corruption",
+          "associated_entities": [
+            "Kinahan OCG",
+            "MTK Global"
+          ],
+          "nationality": "Irish",
+          "watchlist_id": "WL-042"
+        }
+      ],
+      "recommended_action": "IMMEDIATE: Freeze transaction, file SAR with BaFin FIU, notify compliance team",
+      "recipients": [
+        "ceo@globalbank.com",
+        "cfo@globalbank.com",
+        "cco@globalbank.com",
+        "cro@globalbank.com",
+        "aml-team@globalbank.com",
+        "fraud-soc@globalbank.com"
+      ],
+      "regulatory_obligations": [
+        "BaFin \u00a7261 StGB \u2014 File Suspicious Activity Report (SAR) within 24h",
+        "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+        "EU Sanctions Regulation \u2014 Freeze assets, report to competent authority",
+        "GDPR Art. 6(1)(c) \u2014 Processing lawful under legal obligation",
+        "BaFin \u00a711 GwG \u2014 Large Cash Transaction Report (\u2265\u20ac10,000)",
+        "EU Wire Transfer Regulation 2015/847 \u2014 Full originator/beneficiary info required",
+        "BaFin AT 8.2 MaRisk \u2014 Escalate to Risk Management Committee",
+        "EU 6AMLD \u2014 Enhanced Due Diligence, document investigation",
+        "CRITICAL: Consider immediate account freeze pending investigation",
+        "Notify BaFin Supervisory Officer within 48h (\u00a743 KWG)"
+      ],
+      "dispatch_status": "SENT"
+    }
+  }
+}

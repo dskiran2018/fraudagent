@@ -1,0 +1,67 @@
+{
+  "transaction_id": "TXN-45A5195014D4",
+  "investigation_timestamp": "2026-04-20T08:05:07.700254+00:00",
+  "fraud_pattern": "NORMAL_BEHAVIOR",
+  "fraud_narrative": "Transaction of 2,500.00 EUR from Hans Mueller (DE \u2192 FR) assessed as MINIMAL risk (score 0/100). Pattern: NORMAL_BEHAVIOR. 1 compliance issue(s) detected (highest: MEDIUM): Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000.",
+  "graph_analysis": "Single-hop transfer DE \u2192 FR",
+  "behavior_analysis": "Velocity flag: False, prior 24h txns: 0, prior 24h amount: 0 EUR",
+  "compliance_analysis": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000",
+  "observability_insight": "IP: 93.184.216.34, device: fp_abc12345",
+  "top_risk_factors": [],
+  "investigator_summary": "Transaction of 2,500.00 EUR from Hans Mueller (DE \u2192 FR) assessed as MINIMAL risk (score 0/100). Pattern: NORMAL_BEHAVIOR. 1 compliance issue(s) detected (highest: MEDIUM): Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000.",
+  "alert_recommendation": "NO_ALERT",
+  "email_notification": null,
+  "evidence_mapping": [
+    {
+      "type": "watchlist",
+      "hits": 0
+    },
+    {
+      "type": "compliance",
+      "issues": 1
+    }
+  ],
+  "confidence": 10,
+  "regulatory_obligations": [],
+  "bafin_sar_required": false,
+  "_tool_results": {
+    "watchlist_screening": {
+      "screening_timestamp": "2026-04-20T08:05:07.699867+00:00",
+      "customer_name_screened": "Hans Mueller",
+      "beneficiary_name_screened": "Sophie Leclerc",
+      "watchlist_hits": [],
+      "total_hits": 0,
+      "highest_risk": "NONE",
+      "screening_status": "CLEAR"
+    },
+    "compliance_check": {
+      "compliance_timestamp": "2026-04-20T08:05:07.700086+00:00",
+      "eur_equivalent": 2500.0,
+      "sender_country": "DE",
+      "beneficiary_country": "FR",
+      "sender_in_eu": true,
+      "beneficiary_in_eu": true,
+      "sender_high_risk": false,
+      "beneficiary_high_risk": false,
+      "compliance_issues": [
+        {
+          "rule": "EU Regulation 2015/847",
+          "description": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000",
+          "severity": "MEDIUM"
+        }
+      ],
+      "total_issues": 1,
+      "highest_severity": "MEDIUM",
+      "mandatory_sar_required": false
+    },
+    "risk_analysis": {
+      "risk_score": 0,
+      "risk_level": "MINIMAL",
+      "risk_factors": [],
+      "alert_recommended": false,
+      "sar_required": false
+    },
+    "alert_dispatched": false,
+    "alert_details": null
+  }
+}

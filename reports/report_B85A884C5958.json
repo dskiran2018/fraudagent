@@ -1,0 +1,232 @@
+{
+  "transaction_id": "TXN-B85A884C5958",
+  "investigation_timestamp": "2026-04-20T07:55:21.315840+00:00",
+  "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+  "fraud_narrative": "Transaction of 95,000.00 USD from Maxim Yakubets (RU \u2192 CY) assessed as CRITICAL risk (score 88/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Maxim Yakubets matched as CYBERCRIME (100.0% confidence). Sanctions: FBI_MOST_WANTED, OFAC_SDN, NCA_WATCH, EUROPOL. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+  "graph_analysis": "Single-hop transfer RU \u2192 CY",
+  "behavior_analysis": "Velocity flag: False, prior 24h txns: 1, prior 24h amount: 95,000 USD",
+  "compliance_analysis": "Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000; High-risk third country involved (sender: RU) \u2014 Enhanced Due Diligence required",
+  "observability_insight": "IP: 95.213.204.21, device: fp_rus12345",
+  "top_risk_factors": [
+    "CRITICAL watchlist match \u2014 Maxim Yakubets",
+    "Reportable transaction: \u20ac87,400",
+    "High-risk country involved: RU \u2192 CY"
+  ],
+  "investigator_summary": "Transaction of 95,000.00 USD from Maxim Yakubets (RU \u2192 CY) assessed as CRITICAL risk (score 88/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Maxim Yakubets matched as CYBERCRIME (100.0% confidence). Sanctions: FBI_MOST_WANTED, OFAC_SDN, NCA_WATCH, EUROPOL. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+  "alert_recommendation": "TRIGGER_ALERT",
+  "email_notification": {
+    "alert_id": "ALERT-20260420075521-TXN-B85A",
+    "timestamp": "2026-04-20T07:55:21Z",
+    "priority": "CRITICAL",
+    "subject": "\ud83d\udea8 [CRITICAL] Fraud Alert \u2014 SANCTIONED_ENTITY_TRANSFER | Maxim Yakubets | 95,000 USD",
+    "transaction_id": "TXN-B85A884C5958",
+    "customer_name": "Maxim Yakubets",
+    "amount": 95000.0,
+    "currency": "USD",
+    "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+    "risk_score": 88,
+    "top_risk_factors": [
+      "CRITICAL watchlist match \u2014 Maxim Yakubets",
+      "Reportable transaction: \u20ac87,400",
+      "High-risk country involved: RU \u2192 CY"
+    ],
+    "alert_reason": "Transaction of 95,000.00 USD from Maxim Yakubets (RU \u2192 CY) assessed as CRITICAL risk (score 88/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Maxim Yakubets matched as CYBERCRIME (100.0% confidence). Sanctions: FBI_MOST_WANTED, OFAC_SDN, NCA_WATCH, EUROPOL. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+    "watchlist_matches": [
+      {
+        "query_name": "Maxim Yakubets",
+        "matched_name": "Maxim Yakubets",
+        "match_score": 100.0,
+        "match_type": "EXACT",
+        "risk_level": "CRITICAL",
+        "category": "CYBERCRIME",
+        "sanctions": [
+          "FBI_MOST_WANTED",
+          "OFAC_SDN",
+          "NCA_WATCH",
+          "EUROPOL"
+        ],
+        "known_for": "Evil Corp leader, Dridex malware, banking fraud $100M+",
+        "associated_entities": [
+          "Evil Corp",
+          "Business Club"
+        ],
+        "nationality": "Russian",
+        "watchlist_id": "WL-020"
+      }
+    ],
+    "recommended_action": "IMMEDIATE: Freeze transaction, file SAR with BaFin FIU, notify compliance team",
+    "recipients": [
+      "ceo@globalbank.com",
+      "cfo@globalbank.com",
+      "cco@globalbank.com",
+      "cro@globalbank.com",
+      "aml-team@globalbank.com",
+      "fraud-soc@globalbank.com"
+    ],
+    "regulatory_obligations": [
+      "BaFin \u00a7261 StGB \u2014 File Suspicious Activity Report (SAR) within 24h",
+      "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+      "EU Sanctions Regulation \u2014 Freeze assets, report to competent authority",
+      "GDPR Art. 6(1)(c) \u2014 Processing lawful under legal obligation",
+      "BaFin \u00a711 GwG \u2014 Large Cash Transaction Report (\u2265\u20ac10,000)",
+      "EU Wire Transfer Regulation 2015/847 \u2014 Full originator/beneficiary info required",
+      "BaFin AT 8.2 MaRisk \u2014 Escalate to Risk Management Committee",
+      "EU 6AMLD \u2014 Enhanced Due Diligence, document investigation"
+    ],
+    "dispatch_status": "SENT"
+  },
+  "evidence_mapping": [
+    {
+      "type": "watchlist",
+      "hits": 1
+    },
+    {
+      "type": "compliance",
+      "issues": 3
+    }
+  ],
+  "confidence": 98,
+  "regulatory_obligations": [
+    "BaFin \u00a7261 StGB \u2014 File SAR with FIU within 24h",
+    "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+    "BaFin \u00a711 GwG \u2014 Large Transaction Report required"
+  ],
+  "bafin_sar_required": true,
+  "_tool_results": {
+    "watchlist_screening": {
+      "screening_timestamp": "2026-04-20T07:55:21.315054+00:00",
+      "customer_name_screened": "Maxim Yakubets",
+      "beneficiary_name_screened": "Apex Digital Solutions LLC",
+      "watchlist_hits": [
+        {
+          "query_name": "Maxim Yakubets",
+          "matched_name": "Maxim Yakubets",
+          "match_score": 100.0,
+          "match_type": "EXACT",
+          "risk_level": "CRITICAL",
+          "category": "CYBERCRIME",
+          "sanctions": [
+            "FBI_MOST_WANTED",
+            "OFAC_SDN",
+            "NCA_WATCH",
+            "EUROPOL"
+          ],
+          "known_for": "Evil Corp leader, Dridex malware, banking fraud $100M+",
+          "associated_entities": [
+            "Evil Corp",
+            "Business Club"
+          ],
+          "nationality": "Russian",
+          "watchlist_id": "WL-020"
+        }
+      ],
+      "total_hits": 1,
+      "highest_risk": "CRITICAL",
+      "screening_status": "HIT"
+    },
+    "compliance_check": {
+      "compliance_timestamp": "2026-04-20T07:55:21.315104+00:00",
+      "eur_equivalent": 87400.0,
+      "sender_country": "RU",
+      "beneficiary_country": "CY",
+      "sender_in_eu": false,
+      "beneficiary_in_eu": true,
+      "sender_high_risk": true,
+      "beneficiary_high_risk": false,
+      "compliance_issues": [
+        {
+          "rule": "BaFin \u00a711 GwG",
+          "description": "Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required",
+          "severity": "HIGH"
+        },
+        {
+          "rule": "EU Regulation 2015/847",
+          "description": "Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000",
+          "severity": "MEDIUM"
+        },
+        {
+          "rule": "EU 5AMLD Art. 18 / BaFin AML",
+          "description": "High-risk third country involved (sender: RU) \u2014 Enhanced Due Diligence required",
+          "severity": "HIGH"
+        }
+      ],
+      "total_issues": 3,
+      "highest_severity": "HIGH",
+      "mandatory_sar_required": true
+    },
+    "risk_analysis": {
+      "risk_score": 88,
+      "risk_level": "CRITICAL",
+      "risk_factors": [
+        "CRITICAL watchlist match \u2014 Maxim Yakubets",
+        "Reportable transaction: \u20ac87,400",
+        "High-risk country involved: RU \u2192 CY",
+        "Multiple compliance violations detected"
+      ],
+      "alert_recommended": true,
+      "sar_required": true
+    },
+    "alert_dispatched": true,
+    "alert_details": {
+      "alert_id": "ALERT-20260420075521-TXN-B85A",
+      "timestamp": "2026-04-20T07:55:21Z",
+      "priority": "CRITICAL",
+      "subject": "\ud83d\udea8 [CRITICAL] Fraud Alert \u2014 SANCTIONED_ENTITY_TRANSFER | Maxim Yakubets | 95,000 USD",
+      "transaction_id": "TXN-B85A884C5958",
+      "customer_name": "Maxim Yakubets",
+      "amount": 95000.0,
+      "currency": "USD",
+      "fraud_pattern": "SANCTIONED_ENTITY_TRANSFER",
+      "risk_score": 88,
+      "top_risk_factors": [
+        "CRITICAL watchlist match \u2014 Maxim Yakubets",
+        "Reportable transaction: \u20ac87,400",
+        "High-risk country involved: RU \u2192 CY"
+      ],
+      "alert_reason": "Transaction of 95,000.00 USD from Maxim Yakubets (RU \u2192 CY) assessed as CRITICAL risk (score 88/100). Pattern: SANCTIONED_ENTITY_TRANSFER. WATCHLIST HIT: Maxim Yakubets matched as CYBERCRIME (100.0% confidence). Sanctions: FBI_MOST_WANTED, OFAC_SDN, NCA_WATCH, EUROPOL. 3 compliance issue(s) detected (highest: HIGH): Transaction \u2265\u20ac10,000 \u2014 mandatory CTR filing required; Complete originator/beneficiary information required for wire transfers \u2265\u20ac1,000. BaFin SAR filing mandatory within 24h.",
+      "watchlist_matches": [
+        {
+          "query_name": "Maxim Yakubets",
+          "matched_name": "Maxim Yakubets",
+          "match_score": 100.0,
+          "match_type": "EXACT",
+          "risk_level": "CRITICAL",
+          "category": "CYBERCRIME",
+          "sanctions": [
+            "FBI_MOST_WANTED",
+            "OFAC_SDN",
+            "NCA_WATCH",
+            "EUROPOL"
+          ],
+          "known_for": "Evil Corp leader, Dridex malware, banking fraud $100M+",
+          "associated_entities": [
+            "Evil Corp",
+            "Business Club"
+          ],
+          "nationality": "Russian",
+          "watchlist_id": "WL-020"
+        }
+      ],
+      "recommended_action": "IMMEDIATE: Freeze transaction, file SAR with BaFin FIU, notify compliance team",
+      "recipients": [
+        "ceo@globalbank.com",
+        "cfo@globalbank.com",
+        "cco@globalbank.com",
+        "cro@globalbank.com",
+        "aml-team@globalbank.com",
+        "fraud-soc@globalbank.com"
+      ],
+      "regulatory_obligations": [
+        "BaFin \u00a7261 StGB \u2014 File Suspicious Activity Report (SAR) within 24h",
+        "EU 5AMLD Art. 33 \u2014 Mandatory STR to Financial Intelligence Unit",
+        "EU Sanctions Regulation \u2014 Freeze assets, report to competent authority",
+        "GDPR Art. 6(1)(c) \u2014 Processing lawful under legal obligation",
+        "BaFin \u00a711 GwG \u2014 Large Cash Transaction Report (\u2265\u20ac10,000)",
+        "EU Wire Transfer Regulation 2015/847 \u2014 Full originator/beneficiary info required",
+        "BaFin AT 8.2 MaRisk \u2014 Escalate to Risk Management Committee",
+        "EU 6AMLD \u2014 Enhanced Due Diligence, document investigation"
+      ],
+      "dispatch_status": "SENT"
+    }
+  }
+}

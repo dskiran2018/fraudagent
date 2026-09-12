@@ -1,0 +1,61 @@
+{
+  "transaction_id": "TXN-B4254D22CAB3",
+  "investigation_timestamp": "2026-04-20T07:55:21.311977+00:00",
+  "fraud_pattern": "NORMAL_BEHAVIOR",
+  "fraud_narrative": "Transaction of 850.00 EUR from Maria Garcia (ES \u2192 NL) assessed as MINIMAL risk (score 0/100). Pattern: NORMAL_BEHAVIOR.",
+  "graph_analysis": "Single-hop transfer ES \u2192 NL",
+  "behavior_analysis": "Velocity flag: False, prior 24h txns: 0, prior 24h amount: 0 EUR",
+  "compliance_analysis": "No compliance issues detected.",
+  "observability_insight": "IP: 80.58.192.1, device: fp_def67890",
+  "top_risk_factors": [],
+  "investigator_summary": "Transaction of 850.00 EUR from Maria Garcia (ES \u2192 NL) assessed as MINIMAL risk (score 0/100). Pattern: NORMAL_BEHAVIOR.",
+  "alert_recommendation": "NO_ALERT",
+  "email_notification": null,
+  "evidence_mapping": [
+    {
+      "type": "watchlist",
+      "hits": 0
+    },
+    {
+      "type": "compliance",
+      "issues": 0
+    }
+  ],
+  "confidence": 10,
+  "regulatory_obligations": [],
+  "bafin_sar_required": false,
+  "_tool_results": {
+    "watchlist_screening": {
+      "screening_timestamp": "2026-04-20T07:55:21.311867+00:00",
+      "customer_name_screened": "Maria Garcia",
+      "beneficiary_name_screened": "Jan De Vries",
+      "watchlist_hits": [],
+      "total_hits": 0,
+      "highest_risk": "NONE",
+      "screening_status": "CLEAR"
+    },
+    "compliance_check": {
+      "compliance_timestamp": "2026-04-20T07:55:21.311915+00:00",
+      "eur_equivalent": 850.0,
+      "sender_country": "ES",
+      "beneficiary_country": "NL",
+      "sender_in_eu": true,
+      "beneficiary_in_eu": true,
+      "sender_high_risk": false,
+      "beneficiary_high_risk": false,
+      "compliance_issues": [],
+      "total_issues": 0,
+      "highest_severity": "NONE",
+      "mandatory_sar_required": false
+    },
+    "risk_analysis": {
+      "risk_score": 0,
+      "risk_level": "MINIMAL",
+      "risk_factors": [],
+      "alert_recommended": false,
+      "sar_required": false
+    },
+    "alert_dispatched": false,
+    "alert_details": null
+  }
+}
