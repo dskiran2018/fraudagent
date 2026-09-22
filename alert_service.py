@@ -116,7 +116,7 @@ def _print_alert_console(alert: dict) -> None:
     if alert["watchlist_matches"]:
         print(f"\n{Fore.RED + Style.BRIGHT}⚠  WATCHLIST MATCHES DETECTED:{Style.RESET_ALL}")
         for match in alert["watchlist_matches"]:
-            print(f"   • {match.get('name')} [{match.get('risk_level')}] — {match.get('category')}")
+            print(f"   • {match.get('matched_name')} [{match.get('risk_level')}] — {match.get('category')}")
             print(f"     Sanctions: {', '.join(match.get('sanctions', []))}")
 
     print(f"\n{Fore.WHITE + Style.BRIGHT}Risk Factors:{Style.RESET_ALL}")

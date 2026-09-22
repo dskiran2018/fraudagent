@@ -57,7 +57,7 @@ Both run the same investigation engine and support two modes:
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+   pip install -r requirements.txt
 cp .env.example .env   # optional — only needed for LLM mode
 ```
 

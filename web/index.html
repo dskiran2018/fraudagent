@@ -27,11 +27,12 @@
         <div>
           <h2>What this system does</h2>
           <p class="info-lead">
-            A proof-of-concept fraud investigation agent for an EU/BaFin-regulated bank. For every
-            incoming international transaction it automatically screens both parties against global
-            criminal watchlists, checks the transfer against EU/German AML regulation, computes a
-            composite fraud risk score, and — when warranted — immediately alerts top management with
-            a structured investigation report. No human review is required to trigger the alert.
+            An agentic AI control for financial crime compliance (FCC) in an EU/BaFin-regulated
+            institution. Every inbound cross-border payment is screened against consolidated sanctions
+            and law-enforcement data, evaluated against the AML/CFT rulebook, and assigned a composite
+            risk rating under a risk-based approach. Where the escalation threshold is breached, the
+            case is auto-triaged and routed to the MLRO and executive compliance with a decision-ready
+            case file — straight-through, with no Level 1 analyst in the loop.
           </p>
         </div>
         <button type="button" id="info-toggle" class="info-toggle" aria-expanded="true">Hide</button>
@@ -41,43 +42,43 @@
         <li>
           <span class="info-step-num">1</span>
           <div>
-            <strong>Transaction Intake</strong>
-            <p>Parses the sender, beneficiary, amount, currency, countries and transfer type as it would arrive from the core banking system.</p>
+            <strong>Payment Ingestion</strong>
+            <p>Normalises the inbound payment instruction from the core banking platform — originator, beneficiary, value, currency, corridor and payment rail — into a screening-ready record.</p>
           </div>
         </li>
         <li>
           <span class="info-step-num">2</span>
           <div>
-            <strong>Watchlist Screening</strong>
-            <p>Fuzzy-matches sender and beneficiary names (rapidfuzz token-sort ratio) against a global criminal watchlist — OFAC SDN, EU Sanctions, FBI Most Wanted, Interpol Red Notice, BaFin Watch, and UN Security Council designations. A score ≥75% is a hit; ≥95% is treated as an exact match.</p>
+            <strong>Sanctions &amp; Watchlist Screening</strong>
+            <p>Fuzzy name matching (rapidfuzz token-sort ratio) of originator and beneficiary against consolidated sanctions and law-enforcement data — OFAC SDN, EU Consolidated, UN Security Council, Interpol Red Notice, FBI Most Wanted and BaFin. Similarity ≥75% raises a hit; ≥95% is treated as a true match — thresholds tuned to balance detection coverage against false-positive volume.</p>
           </div>
         </li>
         <li>
           <span class="info-step-num">3</span>
           <div>
-            <strong>Regulatory Compliance</strong>
-            <p>Checks the transaction against BaFin/EU AML rules: mandatory reporting above €10,000 (§11 GwG), the EU Wire Transfer Regulation 2015/847 (≥€1,000), high-risk jurisdiction exposure (FATF grey/black list), structuring indicators (amounts just under the reporting threshold), and 24h transaction-velocity anomalies.</p>
+            <strong>AML Rule Evaluation</strong>
+            <p>Tests the payment against the EU/German AML/CFT rulebook: threshold reporting above €10,000 (§11 GwG), originator-information completeness under the EU Funds Transfer Regulation 2015/847 (≥€1,000), FATF high-risk jurisdiction exposure, structuring (smurfing) indicators just below the reporting threshold, and 24-hour velocity anomalies.</p>
           </div>
         </li>
         <li>
           <span class="info-step-num">4</span>
           <div>
-            <strong>Risk Scoring</strong>
-            <p>Combines the watchlist result, compliance severity, transaction size, country risk and velocity signals into a single 0–100 score and risk level, from MINIMAL to CRITICAL.</p>
+            <strong>Composite Risk Rating</strong>
+            <p>Aggregates screening outcome, rule-breach severity, exposure value, jurisdiction risk and velocity into a single 0–100 inherent risk rating, banded MINIMAL to CRITICAL, which drives the downstream escalation decision.</p>
           </div>
         </li>
         <li>
           <span class="info-step-num">5</span>
           <div>
-            <strong>Management Alert</strong>
-            <p>If the risk score is ≥70 or a watchlist hit is found, an immediate priority-ranked alert is dispatched to top management and compliance with a recommended action.</p>
+            <strong>Alert Escalation</strong>
+            <p>Where the rating breaches 70 or a screening hit is confirmed, a priority-ranked alert is routed to the MLRO, Chief Compliance Officer and executive management with a recommended disposition — enhanced monitoring, payment hold with EDD, or freeze and immediate SAR filing.</p>
           </div>
         </li>
         <li>
           <span class="info-step-num">6</span>
           <div>
-            <strong>Investigation Report</strong>
-            <p>Produces a structured report: fraud pattern classification, investigator summary, applicable regulatory obligations (SAR/STR filings), and a confidence score.</p>
+            <strong>Case Disposition</strong>
+            <p>Produces an audit-ready case file: money-laundering typology classification, investigator narrative, the triggered reporting obligations (SAR/STR to the BaFin FIU via goAML), and a confidence score.</p>
           </div>
         </li>
       </ol>

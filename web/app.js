@@ -8,12 +8,12 @@ const ICONS = {
 };
 
 const STEPS = [
-  { id: "intake", label: "Transaction Intake" },
-  { id: "watchlist", label: "Watchlist Screening" },
-  { id: "compliance", label: "Regulatory Compliance" },
-  { id: "risk", label: "Risk Scoring" },
-  { id: "alert", label: "Management Alert" },
-  { id: "report", label: "Investigation Report" },
+  { id: "intake", label: "Payment Ingestion" },
+  { id: "watchlist", label: "Sanctions &amp; Watchlist Screening" },
+  { id: "compliance", label: "AML Rule Evaluation" },
+  { id: "risk", label: "Composite Risk Rating" },
+  { id: "alert", label: "Alert Escalation" },
+  { id: "report", label: "Case Disposition" },
 ];
 
 const pipelineEl = document.getElementById("pipeline");
@@ -35,6 +35,37 @@ function flagEmoji(cc) {
   if (!cc || cc.length !== 2) return "";
   const points = [...cc.toUpperCase()].map((c) => 127397 + c.charCodeAt(0));
   return String.fromCodePoint(...points);
+}
+
+// Built-in ISO 3166-1 alpha-2 -> display name, so there is no country
+// table to keep in sync with config.py. Older browsers fall back to the code.
+const REGION_NAMES = (() => {
+  try {
+    return new Intl.DisplayNames(["en"], { type: "region" });
+  } catch {
+    return null;
+  }
+})();
+
+function countryName(cc) {
+  if (!cc || cc.length !== 2) return "";
+  const code = cc.toUpperCase();
+  if (!REGION_NAMES) return code;
+  try {
+    const name = REGION_NAMES.of(code);
+    // Unassigned codes come back as the code itself; "ZZ" resolves to the
+    // literal "Unknown Region", which reads worse than the raw code.
+    return !name || name === "Unknown Region" ? code : name;
+  } catch {
+    return code;
+  }
+}
+
+// Flag + full country name, e.g. "\u{1F1E9}\u{1F1EA} Germany".
+function countryLabel(cc) {
+  const flag = flagEmoji(cc);
+  const name = countryName(cc);
+  return flag ? `${flag} ${name}` : name;
 }
 
 function money(amount, currency) {
@@ -108,7 +139,7 @@ async function loadTransactions() {
         <span class="txn-amount">${money(t.amount, t.currency)}</span>
       </div>
       <div class="txn-card-row2">
-        <span>${flagEmoji(t.sender_country)} ${t.sender_country} → ${flagEmoji(t.beneficiary_country)} ${t.beneficiary_country}</span>
+        <span>${countryLabel(t.sender_country)} → ${countryLabel(t.beneficiary_country)}</span>
         <span class="txn-type">${t.type}</span>
       </div>`;
     card.addEventListener("click", () => runInvestigation(t));
@@ -127,7 +158,7 @@ function runInvestigation(txn) {
 
   resetPipeline();
   pipelineTitle.textContent = `Investigating ${txn.sender} → ${txn.beneficiary}`;
-  pipelineSubtitle.textContent = `${money(txn.amount, txn.currency)} · ${txn.sender_country} → ${txn.beneficiary_country} · ${txn.type}`;
+  pipelineSubtitle.textContent = `${money(txn.amount, txn.currency)} · ${countryLabel(txn.sender_country)} → ${countryLabel(txn.beneficiary_country)} · ${txn.type}`;
   statusText.textContent = `Running pipeline for ${txn.transaction_id}…`;
 
   setNodeState(STEPS[0].id, "active");
@@ -188,13 +219,13 @@ function renderIntake(d) {
   setNodeState("intake", "clear", "RECEIVED");
   addCard(`
     <div class="card">
-      <div class="card-head"><h3>${svgIcon("intake")} Transaction Intake</h3><span class="badge badge-blue">${d.transaction_id}</span></div>
+      <div class="card-head"><h3>${svgIcon("intake")} Payment Ingestion</h3><span class="badge badge-blue">${d.transaction_id}</span></div>
       <div class="intake-row">
         <span class="intake-amount">${money(d.amount, d.currency)}</span>
         <span class="intake-arrow">·</span>
-        <span>${d.sender} (${flagEmoji(d.sender_country)} ${d.sender_country})</span>
+        <span>${d.sender} (${countryLabel(d.sender_country)})</span>
         <span class="intake-arrow">→</span>
-        <span>${d.beneficiary} (${flagEmoji(d.beneficiary_country)} ${d.beneficiary_country})</span>
+        <span>${d.beneficiary} (${countryLabel(d.beneficiary_country)})</span>
         <span class="badge badge-dim">${d.type}</span>
       </div>
     </div>`);
@@ -219,7 +250,7 @@ function renderWatchlist(d) {
 
   addCard(`
     <div class="card ${hit ? "card-hit" : "card-clear"}">
-      <div class="card-head"><h3>${svgIcon("watchlist")} Watchlist Screening</h3><span class="badge ${hit ? "badge-red" : "badge-green"}">${hit ? "🔴 HIT" : "🟢 CLEAR"}</span></div>
+      <div class="card-head"><h3>${svgIcon("watchlist")} Sanctions &amp; Watchlist Screening</h3><span class="badge ${hit ? "badge-red" : "badge-green"}">${hit ? "🔴 HIT" : "🟢 CLEAR"}</span></div>
       ${body}
     </div>`);
 }
@@ -236,8 +267,8 @@ function renderCompliance(d) {
 
   addCard(`
     <div class="card ${sevClass === "hit" ? "card-hit" : sevClass === "warn" ? "card-warn" : ""}">
-      <div class="card-head"><h3>${svgIcon("compliance")} Regulatory Compliance</h3><span class="badge ${badgeClass}">${d.highest_severity}</span></div>
-      <p class="summary-text" style="margin-top:0;">≈ ${money(d.eur_equivalent, "EUR")} · ${flagEmoji(d.sender_country)}${d.sender_country} ${d.sender_high_risk ? "(high-risk)" : ""} → ${flagEmoji(d.beneficiary_country)}${d.beneficiary_country} ${d.beneficiary_high_risk ? "(high-risk)" : ""}</p>
+      <div class="card-head"><h3>${svgIcon("compliance")} AML Rule Evaluation</h3><span class="badge ${badgeClass}">${d.highest_severity}</span></div>
+      <p class="summary-text" style="margin-top:0;">≈ ${money(d.eur_equivalent, "EUR")} · ${countryLabel(d.sender_country)} ${d.sender_high_risk ? "(high-risk)" : ""} → ${countryLabel(d.beneficiary_country)} ${d.beneficiary_high_risk ? "(high-risk)" : ""}</p>
       <ul class="issue-list">${issues}</ul>
     </div>`);
 }
@@ -257,7 +288,7 @@ function renderRisk(d) {
 
   addCard(`
     <div class="card ${sevClass === "hit" ? "card-hit" : sevClass === "warn" ? "card-warn" : ""}">
-      <div class="card-head"><h3>${svgIcon("risk")} Risk Scoring</h3><span class="badge ${badgeClass}">${d.risk_level}</span></div>
+      <div class="card-head"><h3>${svgIcon("risk")} Composite Risk Rating</h3><span class="badge ${badgeClass}">${d.risk_level}</span></div>
       <div class="risk-layout">
         <svg viewBox="0 0 120 120" class="gauge">
           <circle cx="60" cy="60" r="${r}" class="gauge-bg"/>
@@ -275,7 +306,7 @@ function renderAlert(event) {
     setNodeState("alert", "clear", "NOT REQUIRED");
     addCard(`
       <div class="card card-clear">
-        <div class="card-head"><h3>${svgIcon("alert")} Management Alert</h3><span class="badge badge-green">🟢 NOT REQUIRED</span></div>
+        <div class="card-head"><h3>${svgIcon("alert")} Alert Escalation</h3><span class="badge badge-green">🟢 NOT REQUIRED</span></div>
         <p class="summary-text">Risk below threshold and no watchlist hit — no escalation to top management needed.</p>
       </div>`);
     return;
@@ -285,7 +316,7 @@ function renderAlert(event) {
   setNodeState("alert", "hit", `SENT · ${d.priority}`);
   addCard(`
     <div class="card card-hit">
-      <div class="card-head"><h3>${svgIcon("alert")} Management Alert</h3><span class="badge badge-red">🔴 DISPATCHED · ${d.priority}</span></div>
+      <div class="card-head"><h3>${svgIcon("alert")} Alert Escalation</h3><span class="badge badge-red">🔴 DISPATCHED · ${d.priority}</span></div>
       <div class="alert-subject">${d.subject || ""}</div>
       <div class="alert-meta-grid">
         <div><span>Alert ID</span>${d.alert_id || "N/A"}</div>
@@ -304,7 +335,7 @@ function renderReport(d) {
   addCard(`
     <div class="card">
       <div class="card-head">
-        <h3>${svgIcon("report")} Investigation Report</h3>
+        <h3>${svgIcon("report")} Case Disposition</h3>
         <span class="badge badge-blue">${d.fraud_pattern}</span>
       </div>
       <p class="summary-text">${d.investigator_summary}</p>
